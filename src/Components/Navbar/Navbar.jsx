@@ -11,9 +11,9 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import BroadcastIcon from '@mui/icons-material/BroadcastOnPersonalRounded';
+import BroadcastIcon from "@mui/icons-material/BroadcastOnPersonalRounded";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Products", "Pricing", "Contact", "Location"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -36,15 +36,17 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static"  sx={{backgroundColor:'black', margin:'0px', padding:'0px'}}>
-      <Container maxWidth="xl">
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: "#081c00", margin: "0px", padding: "0px" }}
+    >
+      <Box sx={{paddingInline:'1rem'}}>
         <Toolbar disableGutters>
           <BroadcastIcon sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -54,7 +56,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            AMPHAR
+            GRIT COFFEE
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -98,7 +100,6 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -109,7 +110,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            AMPHAR
+            GRIT COFFEE
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -156,7 +157,7 @@ function Navbar() {
             </Menu>
           </Box>
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   );
 }
