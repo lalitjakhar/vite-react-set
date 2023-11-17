@@ -1,3 +1,5 @@
+// Navbar.jsx
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,17 +13,21 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import BroadcastIcon from "@mui/icons-material/BroadcastOnPersonalRounded";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Products", "Pricing", "Contact", "Location"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -54,6 +60,7 @@ function Navbar() {
               color: "inherit",
               textDecoration: "none",
             }}
+            onClick={() => navigate("/")}
           >
             GRIT COFFEE
           </Typography>
@@ -87,7 +94,13 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate(`/${page.toLowerCase()}`);
+                  }}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -107,6 +120,7 @@ function Navbar() {
               color: "inherit",
               textDecoration: "none",
             }}
+            onClick={() => navigate("/")}
           >
             GRIT COFFEE
           </Typography>
@@ -114,7 +128,7 @@ function Navbar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => navigate(`/${page.toLowerCase()}`)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
@@ -159,4 +173,5 @@ function Navbar() {
     </AppBar>
   );
 }
+
 export default Navbar;
