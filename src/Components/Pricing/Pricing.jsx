@@ -41,13 +41,25 @@ export default function Pricing() {
       reader.readAsDataURL(file);
     }
   };
-
   const statusOptions = [
-    // ... (unchanged)
+    { text: "Online", value: "yourStatus" },
+    { text: "Away", value: "Away" },
+    { text: "In Meeting", value: "In Meeting" },
+    { text: "Out of the Office", value: "Out of the Office" },
+    { text: "Do Not Disturb", value: "Do Not Disturb" },
+    { text: "Custom Status", value: "Custom Status" },
   ];
 
   const getCurrentLocalTime = () => {
-    // ... (unchanged)
+    const currentTime = new Date();
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    return new Intl.DateTimeFormat(navigator.language, options).format(
+      currentTime
+    );
   };
 
   return (
