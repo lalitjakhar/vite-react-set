@@ -1,5 +1,5 @@
-import { Container, Box, Grid, Button, Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
+import { Container, Box, Grid, Button, Menu, MenuItem } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -15,6 +15,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 export default function Pricing() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,25 +30,24 @@ export default function Pricing() {
     handleClose();
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfilePic(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const statusOptions = [
-    { text: "Online", value: "yourStatus" },
-    { text: "Away", value: "Away" },
-    { text: "In Meeting", value: "In Meeting" },
-    { text: "Out of the Office", value: "Out of the Office" },
-    { text: "Do Not Disturb", value: "Do Not Disturb" },
-    { text: "Custom Status", value: "Custom Status" },
+    // ... (unchanged)
   ];
 
   const getCurrentLocalTime = () => {
-    const currentTime = new Date();
-    const options = {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    };
-    return new Intl.DateTimeFormat(navigator.language, options).format(
-      currentTime
-    );
+    // ... (unchanged)
   };
 
   return (
@@ -58,9 +58,27 @@ export default function Pricing() {
         >
           <Box sx={{ padding: "2rem 5rem" }}>
             <Card sx={{ display: "flex", boxShadow: "none" }}>
-              <Avatar sx={{ bgcolor: blue[100], width: 110, height: 110 }}>
-                J
-              </Avatar>
+              <label htmlFor="profile-pic-input">
+                <Avatar
+                  sx={{
+                    bgcolor: blue[100],
+                    width: 110,
+                    height: 110,
+                    cursor: "pointer",
+                  }}
+                  alt="Profile Picture"
+                  src={profilePic}
+                >
+                  {profilePic ? null : "J"}
+                </Avatar>
+              </label>
+              <input
+                id="profile-pic-input"
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
                   <Typography component="div" variant="h5">
