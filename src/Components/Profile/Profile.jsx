@@ -13,7 +13,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { blue } from "@mui/material/colors";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
-export default function Pricing() {
+export default function Profile() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
 
@@ -201,8 +201,12 @@ export default function Pricing() {
               <Grid item xs={6}>
                 <Button
                   variant="contained"
-                  color="primary"
-                  sx={{ textTransform: "none", fontSize: "18px" }}
+                  sx={{
+                    padding: "8px 14px",
+                    fontSize: "14px",
+                    backgroundColor: "#9e77ed",
+                    textTransform: "none",
+                  }}
                 >
                   Upgrade
                 </Button>

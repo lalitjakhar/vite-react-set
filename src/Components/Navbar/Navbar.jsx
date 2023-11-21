@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import BroadcastIcon from "@mui/icons-material/BroadcastOnPersonalRounded";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Contact", "Location"];
+const pages = ["Products", "Profile", "Contact", "Location"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
