@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Box, Grid, Button, Menu, MenuItem } from "@mui/material";
+import { Box, Grid, Button, Menu, MenuItem } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -64,182 +64,178 @@ export default function Profile() {
 
   return (
     <>
-      <Container>
-        <Box
-          sx={{ margin: "5rem", height: "600px", border: "1px solid black" }}
-        >
-          <Box sx={{ padding: "2rem 5rem" }}>
-            <Card sx={{ display: "flex", boxShadow: "none" }}>
-              <label htmlFor="profile-pic-input">
-                <Avatar
-                  sx={{
-                    bgcolor: blue[100],
-                    width: 110,
-                    height: 110,
-                    cursor: "pointer",
-                  }}
-                  alt="Profile Picture"
-                  src={profilePic}
-                >
-                  {profilePic ? null : "J"}
-                </Avatar>
-              </label>
-              <input
-                id="profile-pic-input"
-                type="file"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              />
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <CardContent sx={{ flex: "1 0 auto" }}>
-                  <Typography component="div" variant="h5">
-                    John Doe
-                  </Typography>
-                  <Typography variant="subtitle1" component="div">
-                    john@kroolo.com
-                  </Typography>
-                  <Typography component="div" variant="h6">
-                    Org Owner
-                  </Typography>
-                </CardContent>
-              </Box>
-            </Card>
-            <Grid
-              container
-              spacing={3}
-              sx={{
-                padding: "0",
-                margin: "0",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Grid item>
-                <Typography variant="h6" sx={{ fontSize: "18px" }}>
-                  Status:
+      <Box sx={{ width: "26rem" }}>
+        <Box sx={{ margin: "1rem" }}>
+          <Card sx={{ display: "flex", boxShadow: "none" }}>
+            <label htmlFor="profile-pic-input">
+              <Avatar
+                sx={{
+                  bgcolor: blue[100],
+                  width: 110,
+                  height: 110,
+                  cursor: "pointer",
+                }}
+                alt="Profile Picture"
+                src={profilePic}
+              >
+                {profilePic ? null : "J"}
+              </Avatar>
+            </label>
+            <input
+              id="profile-pic-input"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography component="div" variant="h5">
+                  John Doe
                 </Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={handleClick}
-                  sx={{ textTransform: "none", fontSize: "18px" }}
-                >
-                  Set a status
-                </Button>
-                <Menu
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontSize: "18px",
-                        "&:hover": {
-                          backgroundColor: "transparent !important",
-                        },
-                      }}
-                    >
-                      Your Status
-                    </Typography>
+                <Typography variant="subtitle1" component="div">
+                  john@kroolo.com
+                </Typography>
+                <Typography component="div" variant="h6">
+                  Org Owner
+                </Typography>
+              </CardContent>
+            </Box>
+          </Card>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              padding: "0",
+              margin: "0",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Grid item>
+              <Typography variant="h6" sx={{ fontSize: "18px" }}>
+                Status:
+              </Typography>
+            </Grid>
+            <Grid item >
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleClick}
+                sx={{ textTransform: "none", fontSize: "18px" }}
+              >
+                Set a status
+              </Button>
+              <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontSize: "18px",
+                      "&:hover": {
+                        backgroundColor: "transparent !important",
+                      },
+                    }}
+                  >
+                    Your Status
+                  </Typography>
+                </MenuItem>
+                {statusOptions.map((option) => (
+                  <MenuItem
+                    key={option.value}
+                    onClick={() => handleMenuItemClick(option.value)}
+                  >
+                    {option.text}
                   </MenuItem>
-                  {statusOptions.map((option) => (
-                    <MenuItem
-                      key={option.value}
-                      onClick={() => handleMenuItemClick(option.value)}
-                    >
-                      {option.text}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Grid>
+                ))}
+              </Menu>
             </Grid>
-            <Grid
-              container
-              spacing={3}
-              sx={{
-                padding: "0",
-                margin: "0",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Grid item>
-                <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <AccessTimeIcon fontSize="small" /> {getCurrentLocalTime()}{" "}
-                  <Typography variant="h6" sx={{ fontSize: "18px" }}>
-                    local time
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={6}>
+          </Grid>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              padding: "0",
+              margin: "0",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Grid item>
+              <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <AccessTimeIcon fontSize="small" /> {getCurrentLocalTime()}{" "}
                 <Typography variant="h6" sx={{ fontSize: "18px" }}>
-                  India
+                  local time
                 </Typography>
-              </Grid>
+              </Box>
             </Grid>
-            <Grid
-              container
-              spacing={3}
-              sx={{
-                padding: "0",
-                margin: "0",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Grid item>
-                <Typography variant="h6" sx={{ fontSize: "18px" }}>
-                  Current Plan:
-                </Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    padding: "8px 14px",
-                    fontSize: "14px",
-                    backgroundColor: "#9e77ed",
-                    textTransform: "none",
-                  }}
-                >
-                  Upgrade
-                </Button>
-              </Grid>
+            <Grid item>
+              <Typography variant="h6" sx={{ fontSize: "18px" }}>
+                India
+              </Typography>
             </Grid>
-            <MenuItem sx={{ marginTop: "8px" }}>
-              <ListItemIcon>
-                <PersonOutlinedIcon />
-              </ListItemIcon>
-              My Profile
-            </MenuItem>
-            <MenuItem sx={{ marginTop: "8px" }}>
-              <ListItemIcon>
-                <LockOutlinedIcon />
-              </ListItemIcon>
-              Change Password
-            </MenuItem>
-            <MenuItem sx={{ marginTop: "8px" }}>
-              <ListItemIcon>
-                <SettingsOutlinedIcon />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
-            <Divider />
-            <MenuItem>
-              <ListItemIcon>
-                <LogoutOutlinedIcon />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </Box>
+          </Grid>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              padding: "0",
+              margin: "0",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Grid item>
+              <Typography variant="h6" sx={{ fontSize: "18px" }}>
+                Current Plan:
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                sx={{
+                  padding: "8px 14px",
+                  fontSize: "14px",
+                  backgroundColor: "#9e77ed",
+                  textTransform: "none",
+                }}
+              >
+                Upgrade
+              </Button>
+            </Grid>
+          </Grid>
+          <MenuItem sx={{ marginTop: "8px" }}>
+            <ListItemIcon>
+              <PersonOutlinedIcon />
+            </ListItemIcon>
+            My Profile
+          </MenuItem>
+          <MenuItem sx={{ marginTop: "8px" }}>
+            <ListItemIcon>
+              <LockOutlinedIcon />
+            </ListItemIcon>
+            Change Password
+          </MenuItem>
+          <MenuItem sx={{ marginTop: "8px" }}>
+            <ListItemIcon>
+              <SettingsOutlinedIcon />
+            </ListItemIcon>
+            Settings
+          </MenuItem>
+          <Divider />
+          <MenuItem>
+            <ListItemIcon>
+              <LogoutOutlinedIcon />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
         </Box>
-      </Container>
+      </Box>
     </>
   );
 }

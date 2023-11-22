@@ -1,5 +1,3 @@
-// Navbar.jsx
-
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,9 +12,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import BroadcastIcon from "@mui/icons-material/BroadcastOnPersonalRounded";
 import { useNavigate } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
-const pages = ["Products", "Profile", "Contact", "Location"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Products", "Pricing", "Contact", "Location"];
 
 function Navbar() {
   const navigate = useNavigate();
@@ -40,6 +38,11 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
+  const handleProfileClick = () => {
+    handleCloseUserMenu();
+    navigate("/Profile");
+  };
+
   return (
     <AppBar
       position="static"
@@ -48,65 +51,6 @@ function Navbar() {
       <Box sx={{ paddingInline: "1rem" }}>
         <Toolbar disableGutters>
           <BroadcastIcon sx={{ display: { xs: "none", md: "flex" }, mr: 2 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "cursive",
-              fontWeight: 700,
-              color: "inherit",
-              textDecoration: "none",
-            }}
-            onClick={() => navigate("/")}
-          >
-            GRIT COFFEE
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  onClick={() => {
-                    handleCloseNavMenu();
-                    navigate(`/${page.toLowerCase()}`);
-                  }}
-                >
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <BroadcastIcon sx={{ display: { xs: "flex", md: "none" }, mr: 2 }} />
           <Typography
             variant="h5"
             noWrap
@@ -135,7 +79,6 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Account settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -146,7 +89,7 @@ function Navbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: "50px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -161,13 +104,12 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleProfileClick}>
+                <Profile />
+              </MenuItem>
             </Menu>
           </Box>
+
         </Toolbar>
       </Box>
     </AppBar>
