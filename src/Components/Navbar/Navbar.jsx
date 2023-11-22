@@ -104,12 +104,9 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleProfileClick}>
-                <Profile />
-              </MenuItem>
+              <Profile />
             </Menu>
           </Box>
-
         </Toolbar>
       </Box>
     </AppBar>
